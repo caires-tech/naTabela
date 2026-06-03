@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Configurações básicas da página -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título exibido na aba do navegador -->
+    <title>Copa do Mundo 2026</title>
+    <!-- Arquivo principal de estilos -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- =====================================================
+         CABEÇALHO PRINCIPAL
+         ===================================================== -->
+    <header>
+        <h1>COPA DO MUNDO 2026</h1>
+        <!-- Botões administrativos (visíveis apenas para admin) -->
+        <button id="generateBracketBtn" class="hidden">
+            ATIVAR 2ª FASE
+        </button>
+        <button id="saveBtn" class="hidden">
+            SALVAR
+        </button>
+        <button id="resetBracketBtn" class="hidden">
+            RESET
+        </button>
+        <button id="logoutBtn" class="hidden">
+            LOGOUT
+        </button>
+    </header>
+
+    <main>
+        <!-- =====================================================
+             FASE DE GRUPOS
+             Carrossel horizontal contendo os 12 grupos
+             ===================================================== -->
+        <section class="groups-section">
+            <!-- Navegação esquerda e direita / grupos gerados dinamicamente pelo JS -->
+            <button class="arrow left">&#10094;</button>
+            <div class="groups-container" id="groupsContainer"></div>
+            <button class="arrow right">&#10095;</button>
+        </section>
+
+        <!-- =====================================================
+             CHAVEAMENTO MATA-MATA
+             ===================================================== -->
+        <section class="bracket-section">
+            <h2 class="bracket-title">FASES FINAIS</h2>
+            <div class="bracket-container">
+                <div class="bracket-wrapper">
+                    <div class="bracket" id="bracket">
+                        <!-- =====================================================
+                             SEGUNDAS DE FINAL (32 SELEÇÕES) - LADO ESQUERDO
+                             =====================================================
+                             Estrutura padrão de uma partida:
+
+                             data-match = número oficial do jogo
+                             data-date  = data da partida
+
+                             team-line  = seleção/classificado da posição
+                             ko-score   = placar da partida
+
+                             Exemplo:
+                             1E = primeiro colocado do grupo E
+                             W74 = vencedor do jogo 74
+                             RU101 = perdedor da semifinal 101 -->
+                        <div class="round r32">
+                            <h3>Segundas de final</h3>
+                            <div class="round-column">
+                                <!-- JOGO J74 -->
+                                <div class="match-box" data-match="74" data-date="29/06">
+                                    <div class="match-date">29/06 • 17:30</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1E">
+                                            1E
+                                        </div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3ABCDF"
+                                            contenteditable="false">
+                                            3ABCDF
+                                        </div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J74</div>
+                                </div>
+                                <!-- JOGO J77 -->
+                                <div class="match-box" data-match="77" data-date="30/06">
+                                    <div class="match-date">30/06 • 18:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1I">1I</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3CDFGH"
+                                            contenteditable="false">
+                                            3CDFGH</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J77</div>
+                                </div>
+                                <!-- JOGO J73 -->
+                                <div class="match-box" data-match="73" data-date="28/06">
+                                    <div class="match-date">28/06 • 16:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2A">2A</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2B">2B</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J73</div>
+                                </div>
+                                <!-- JOGO J75 -->
+                                <div class="match-box" data-match="75" data-date="29/06">
+                                    <div class="match-date">29/06 • 22:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1F">1F</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2C">2C</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J75</div>
+                                </div>
+                                <!-- JOGO J83 -->
+                                <div class="match-box" data-match="83" data-date="02/07">
+                                    <div class="match-date">02/07 • 20:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2K">2K</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2L">2L</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J83</div>
+                                </div>
+                                <!-- JOGO J84 -->
+                                <div class="match-box" data-match="84" data-date="02/07">
+                                    <div class="match-date">02/07 • 16:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1H">1H</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2J">2J</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J84</div>
+                                </div>
+                                <!-- JOGO J81 -->
+                                <div class="match-box" data-match="81" data-date="01/07">
+                                    <div class="match-date">01/07 • 21:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1D">1D</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3BEFIJ"
+                                            contenteditable="false">
+                                            3BEFIJ</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J81</div>
+                                </div>
+                                <!-- JOGO J82 -->
+                                <div class="match-box" data-match="82" data-date="01/07">
+                                    <div class="match-date">01/07 • 17:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1G">1G</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3AEHIJ"
+                                            contenteditable="false">
+                                            3AEHIJ</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J82</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                             OITAVAS DE FINAL - LADO ESQUERDO
+                             ===================================================== -->
+                        <div class="round r16">
+                            <h3>Oitavas de final</h3>
+                            <div class="round-column">
+                                <div class="connector c1"></div>
+                                <div class="connector c2"></div>
+                                <div class="connector c3"></div>
+                                <div class="connector c4"></div>
+                                <!-- JOGO J89 -->
+                                <div class="match-box" data-match="89" data-date="04/07">
+                                    <div class="match-date">04/07 • 18:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W74">W74</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W77">W77</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J89</div>
+                                </div>
+                                <!-- JOGO J90 -->
+                                <div class="match-box" data-match="90" data-date="04/07">
+                                    <div class="match-date">04/07 • 14:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W73">W73</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W75">W75</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J90</div>
+                                </div>
+                                <!-- JOGO J93 -->
+                                <div class="match-box" data-match="93" data-date="06/07">
+                                    <div class="match-date">06/07 • 16:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W83">W83</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W84">W84</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J93</div>
+                                </div>
+                                <!-- JOGO J94 -->
+                                <div class="match-box" data-match="94" data-date="06/07">
+                                    <div class="match-date">06/07 • 21:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W81">W81</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W82">W82</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J94</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                             QUARTAS DE FINAL - LADO ESQUERDO
+                             ===================================================== -->
+                        <div class="round r8">
+                            <h3>Quartas de final</h3>
+                            <div class="round-column">
+                                <!-- JOGO J97 -->
+                                <div class="match-box" data-match="97" data-date="09/07">
+                                    <div class="match-date">09/07 • 17:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W89">W89</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W90">W90</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J97</div>
+                                </div>
+                                <!-- JOGO J98 -->
+                                <div class="match-box" data-match="98" data-date="10/07">
+                                    <div class="match-date">10/07 • 16:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W93">W93</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W94">W94</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J98</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                              SEMIFINAIS - LADO ESQUERDO
+                             ===================================================== -->
+                        <div class="round semi">
+                            <h3>Semifinal</h3>
+                            <div class="round-column">
+                                <!-- JOGO J101 -->
+                                <div class="match-box" data-match="101" data-date="14/07">
+                                    <div class="match-date">14/07 • 16:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W97">W97</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W98">W98</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J101</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                              CENTRO DO CHAVEAMENTO
+                              Final e disputa de 3º lugar
+                             ===================================================== -->
+                        <div class="center-stage">
+                            <!-- JOGO J104 -->
+                            <div class="match-box final-box" data-match="104" data-date="19/07">
+                                <h3>Final</h3>
+                                <div class="match-date">19/07 • 16:00</div>
+                                <div class="knockout-team">
+                                    <div class="team-line" data-slot="W101">W101</div>
+                                    <input type="number" class="ko-score" min="0" max="99">
+                                </div>
+                                <div class="knockout-team">
+                                    <div class="team-line" data-slot="W102">W102</div>
+                                    <input type="number" class="ko-score" min="0" max="99">
+                                </div>
+                                <div class="game-id">J104</div>
+                            </div>
+                            <!-- JOGO J103 -->
+                            <div class="match-box third-box" data-match="103" data-date="18/07">
+                                <h3>3º lugar</h3>
+                                <div class="match-date">18/07 • 18:00</div>
+                                <div class="knockout-team">
+                                    <div class="team-line" data-slot="RU101">RU101</div>
+                                    <input type="number" class="ko-score" min="0" max="99">
+                                </div>
+                                <div class="knockout-team">
+                                    <div class="team-line" data-slot="RU102">RU102</div>
+                                    <input type="number" class="ko-score" min="0" max="99">
+                                </div>
+                                <div class="game-id">J103</div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                              SEMIFINAIS - LADO DIREITO
+                             ===================================================== -->
+                        <div class="round semi right-side">
+                            <h3>Semifinal</h3>
+                            <div class="round-column">
+                                <!-- JOGO J102 -->
+                                <div class="match-box" data-match="102" data-date="15/07">
+                                    <div class="match-date">15/07 • 16:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W99">W99</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W100">W100</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J102</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                             QUARTAS DE FINAL - LADO DIREITO
+                             ===================================================== -->
+                        <div class="round r8 right-side">
+                            <h3>Quartas de final</h3>
+                            <div class="round-column">
+                                <!-- JOGO J99 -->
+                                <div class="match-box" data-match="99" data-date="11/07">
+                                    <div class="match-date">11/07 • 18:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W91">W91</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W92">W92</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J99</div>
+                                </div>
+                                <!-- JOGO J100 -->
+                                <div class="match-box" data-match="100" data-date="11/07">
+                                    <div class="match-date">11/07 • 22:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W95">W95</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W96">W96</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J100</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                             OITAVAS DE FINAL - LADO DIREITO
+                             ===================================================== -->
+                        <div class="round r16 right-side">
+                            <h3>Oitavas de final</h3>
+                            <div class="round-column">
+                                <div class="connector c1"></div>
+                                <div class="connector c2"></div>
+                                <div class="connector c3"></div>
+                                <div class="connector c4"></div>
+                                <!-- JOGO J91 -->
+                                <div class="match-box" data-match="91" data-date="05/07">
+                                    <div class="match-date">05/07 • 17:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W76">W76</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W78">W78</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J91</div>
+                                </div>
+                                <!-- JOGO J92 -->
+                                <div class="match-box" data-match="92" data-date="05/07">
+                                    <div class="match-date">05/07 • 21:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W79">W79</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W80">W80</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J92</div>
+                                </div>
+                                <!-- JOGO J95 -->
+                                <div class="match-box" data-match="95" data-date="07/07">
+                                    <div class="match-date">07/07 • 13:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W86">W86</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W88">W88</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J95</div>
+                                </div>
+                                <!-- JOGO J96 -->
+                                <div class="match-box" data-match="96" data-date="07/07">
+                                    <div class="match-date">07/07 • 17:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W85">W85</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="W87">W87</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J96</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- =====================================================
+                             SEGUNDAS DE FINAL (32 SELEÇÕES) - LADO ESQUERDO
+                             ===================================================== -->
+                        <div class="round r32 right-side">
+                            <h3>Segundas de final</h3>
+                            <div class="round-column">
+                                <!-- JOGO J76 -->
+                                <div class="match-box" data-match="76" data-date="29/06">
+                                    <div class="match-date">29/06 • 14:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1C">1C</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2F">2F</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J76</div>
+                                </div>
+                                <!-- JOGO J78 -->
+                                <div class="match-box" data-match="78" data-date="30/06">
+                                    <div class="match-date">30/06 • 14:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2E">2E</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2I">2I</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J78</div>
+                                </div>
+                                <!-- JOGO J79 -->
+                                <div class="match-box" data-match="79" data-date="30/06">
+                                    <div class="match-date">30/06 • 22:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1A">1A</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3CEFHI"
+                                            contenteditable="false">
+                                            3CEFHI</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J79</div>
+                                </div>
+                                <!-- JOGO J80 -->
+                                <div class="match-box" data-match="80" data-date="01/07">
+                                    <div class="match-date">01/07 • 13:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1L">1L</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3EFHIJK"
+                                            contenteditable="false">
+                                            3EFHIJK</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J80</div>
+                                </div>
+                                <!-- JOGO J86 -->
+                                <div class="match-box" data-match="86" data-date="03/07">
+                                    <div class="match-date">03/07 • 19:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1J">1J</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2H">2H</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J86</div>
+                                </div>
+                                <!-- JOGO J88 -->
+                                <div class="match-box" data-match="88" data-date="03/07">
+                                    <div class="match-date">03/07 • 15:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2D">2D</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="2G">2G</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J88</div>
+                                </div>
+                                <!-- JOGO J85 -->
+                                <div class="match-box" data-match="85" data-date="03/07">
+                                    <div class="match-date">03/07 • 00:00</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1B">1B</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3EFGIJ"
+                                            contenteditable="false">
+                                            3EFGIJ</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J85</div>
+                                </div>
+                                <!-- JOGO J87 -->
+                                <div class="match-box" data-match="87" data-date="03/07">
+                                    <div class="match-date">03/07 • 22:30</div>
+                                    <div class="knockout-team">
+                                        <div class="team-line" data-slot="1K">1K</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="knockout-team">
+                                        <div class="team-line editable-third" data-slot="3DEIJL"
+                                            contenteditable="false">
+                                            3DEIJL</div>
+                                        <input type="number" class="ko-score" min="0" max="99">
+                                    </div>
+                                    <div class="game-id">J87</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- =====================================================
+             EXIBIÇÃO DO CAMPEÃO
+             Preenchido automaticamente pelo JavaScript
+             ===================================================== -->
+        <div id="champion-display" class="champion-display hidden">
+            <img id="champion-flag" src="" alt="">
+            <div id="champion-name"></div>
+            <div id="champion-title">CHAMPION</div>
+        </div>
+        <!-- =====================================================
+             IMAGEM DA TAÇA
+             ===================================================== -->
+        <section class="trophy-section">
+            <img src="img/cup2026-transp.png" alt="Troféu Mundial">
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+         JS PRINCIPAL
+         ===================================================== -->
+    <script src="script.js"></script>
+    <!-- =====================================================
+         RODAPÉ
+         ===================================================== -->
+    <footer class="footer">
+        © 2026 Caires-Tech • Desenvolvido por Rodrigo Caires
+    </footer>
+</body>
+
+</html>

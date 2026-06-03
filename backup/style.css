@@ -1,0 +1,920 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, #050816 0%, #0b1026 50%, #050816 100%);
+
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+
+header {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+
+  background: linear-gradient(90deg, #7c4dff, #4da6ff);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: 4px;
+}
+
+/* GRUPOS */
+
+.groups-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 40px 20px;
+}
+
+.groups-container {
+  display: flex;
+  gap: 30px;
+
+  overflow-x: auto;
+  scroll-behavior: smooth;
+
+  width: 85%;
+  padding: 10px;
+}
+
+.groups-container::-webkit-scrollbar {
+  display: none;
+}
+
+.group-box {
+  min-width: 620px;
+
+  background: rgba(20, 24, 45, 0.95);
+
+  border: 1px solid rgba(124, 77, 255, 0.4);
+
+  border-radius: 20px;
+
+  padding: 25px;
+
+  box-shadow:
+    0 0 20px rgba(124, 77, 255, 0.15),
+    0 0 40px rgba(77, 166, 255, 0.08);
+
+  backdrop-filter: blur(10px);
+
+  transition: 0.3s;
+}
+
+.group-box:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 0 25px rgba(124, 77, 255, 0.3),
+    0 0 50px rgba(77, 166, 255, 0.15);
+}
+
+.group-box h2 {
+  text-align: center;
+
+  margin-bottom: 25px;
+
+  font-size: 1.6rem;
+
+  color: #8ab4ff;
+}
+
+/* TABELA */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+
+th {
+  color: #7c4dff;
+  font-weight: bold;
+}
+
+th,
+td {
+  padding: 8px 4px;
+
+  text-align: center;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  font-size: 0.82rem;
+}
+
+td {
+  color: #e4e7ff;
+}
+
+/* JOGOS */
+
+.matches {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.match {
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  transition: 0.3s;
+}
+
+.match:hover {
+  background: rgba(124, 77, 255, 0.08);
+}
+
+.match span {
+  color: #8f9bbf;
+  font-size: 0.9rem;
+}
+
+.match p {
+  margin-top: 6px;
+
+  font-size: 1.05rem;
+
+  color: #ffffff;
+}
+
+/* SETAS */
+
+.arrow {
+  background: linear-gradient(135deg, #7c4dff, #4da6ff);
+
+  color: white;
+
+  border: none;
+
+  width: 55px;
+  height: 55px;
+
+  font-size: 1.5rem;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  box-shadow: 0 0 15px rgba(124, 77, 255, 0.4);
+}
+
+.arrow:hover {
+  transform: scale(1.1);
+
+  box-shadow: 0 0 25px rgba(77, 166, 255, 0.5);
+}
+
+/* FASES */
+
+.knockout {
+  padding: 80px 20px;
+
+  text-align: center;
+}
+
+.knockout h2 {
+  font-size: 2.3rem;
+
+  margin-bottom: 50px;
+
+  color: #8ab4ff;
+}
+
+.phase {
+  background: rgba(20, 24, 45, 0.95);
+
+  border: 1px solid rgba(124, 77, 255, 0.2);
+
+  margin: 25px auto;
+
+  padding: 25px;
+
+  max-width: 550px;
+
+  border-radius: 16px;
+
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.08);
+}
+
+.phase h3 {
+  color: #7c4dff;
+
+  margin-bottom: 10px;
+}
+
+.final {
+  border: 2px solid #4da6ff;
+
+  box-shadow: 0 0 30px rgba(77, 166, 255, 0.2);
+}
+
+/* CAMPEÃO */
+
+.champion {
+  text-align: center;
+
+  padding: 100px 20px;
+}
+
+.champion h2 {
+  color: #8ab4ff;
+
+  margin-bottom: 20px;
+
+  font-size: 2rem;
+}
+
+.champion h1 {
+  font-size: 5rem;
+
+  background: linear-gradient(90deg, #7c4dff, #4da6ff);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.team-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flag {
+  width: 24px;
+  height: 18px;
+
+  object-fit: cover;
+
+  border-radius: 4px;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.team-name {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  font-size: 0.9rem;
+}
+
+.flag {
+  width: 22px;
+  height: 16px;
+
+  flex-shrink: 0;
+}
+
+th:first-child,
+td:first-child {
+  width: 210px;
+
+  text-align: left;
+
+  padding-left: 10px;
+}
+
+th:not(:first-child),
+td:not(:first-child) {
+  width: 45px;
+}
+.match {
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  transition: 0.3s;
+
+  text-align: center;
+}
+
+.match-info {
+  color: #9aa4c7;
+
+  font-size: 0.88rem;
+
+  margin-bottom: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+.dot {
+  color: #7c4dff;
+
+  font-weight: bold;
+}
+
+.match p {
+  margin-top: 6px;
+
+  font-size: 1.05rem;
+
+  color: #ffffff;
+}
+
+/* =========================================
+   BRACKET PROFISSIONAL
+========================================= */
+
+.bracket-section {
+  padding: 40px 0 0;
+
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.bracket-wrapper {
+  display: flex;
+
+  justify-content: center;
+
+  width: 100%;
+
+  padding-bottom: 40px;
+}
+
+.bracket-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #8ab4ff;
+  margin-bottom: 60px;
+}
+
+/* WRAPPER */
+
+.bracket-wrapper {
+  overflow-x: visible;
+}
+
+/* ESTRUTURA PRINCIPAL */
+
+.bracket {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  gap: 25px;
+
+  width: max-content;
+
+  margin: 0 auto;
+
+  padding: 20px 10px 0;
+}
+
+/* COLUNAS */
+
+.round {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TÍTULOS */
+
+.round h3 {
+  color: #8ab4ff;
+  margin-bottom: 18px;
+  font-size: 0.92rem;
+}
+
+/* COLUNA INTERNA */
+
+.round-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* BOX DOS JOGOS */
+
+.match-box {
+  width: 135px;
+
+  background: rgba(20, 24, 45, 0.95);
+
+  border: 1px solid rgba(124, 77, 255, 0.25);
+
+  border-radius: 12px;
+
+  padding: 10px;
+
+  position: relative;
+
+  box-shadow:
+    0 0 15px rgba(124, 77, 255, 0.1),
+    0 0 30px rgba(77, 166, 255, 0.05);
+}
+
+/* HOVER */
+
+.match-box:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(77, 166, 255, 0.5);
+
+  box-shadow:
+    0 0 20px rgba(124, 77, 255, 0.25),
+    0 0 40px rgba(77, 166, 255, 0.15);
+}
+
+/* DATA */
+
+.match-date {
+  text-align: center;
+
+  color: #9aa4c7;
+
+  font-size: 0.72rem;
+
+  margin-bottom: 8px;
+}
+
+/* TIMES */
+
+.team-line {
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+
+  padding: 7px 8px;
+
+  margin-bottom: 6px;
+
+  color: white;
+
+  font-size: 0.82rem;
+}
+
+/* ID */
+
+.game-id {
+  text-align: center;
+
+  margin-top: 6px;
+
+  color: #7c4dff;
+
+  font-size: 0.72rem;
+
+  font-weight: bold;
+}
+
+/* =========================================
+   ESPAÇAMENTOS MATEMÁTICOS
+========================================= */
+
+/* 32 avos */
+
+.r32 .round-column {
+  gap: 18px;
+}
+
+/* Oitavas */
+
+.r16 {
+  padding-top: 90px;
+}
+
+.r16 .round-column {
+  gap: 90px;
+}
+
+.r16 .match-box + .match-box {
+  margin-top: 90px;
+}
+
+/* Quartas */
+
+.r8 {
+  padding-top: 270px;
+}
+
+.r8 .round-column {
+  gap: 290px;
+}
+
+.r8 .match-box + .match-box {
+  margin-top: 300px;
+}
+
+/* Semis */
+
+.semi {
+  padding-top: 650px;
+}
+
+.semi .match-box + .match-box {
+  margin-top: 300px;
+}
+
+/* CENTRO */
+
+.center-stage {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 140px;
+
+  padding-top: 520px;
+}
+
+/* FINAL */
+
+.final-box {
+  border: 2px solid #4da6ff;
+
+  box-shadow:
+    0 0 20px rgba(77, 166, 255, 0.2),
+    0 0 40px rgba(77, 166, 255, 0.1);
+}
+
+/* =========================================
+   LINHAS
+========================================= */
+
+/* LINHA DIREITA */
+
+.match-box::before {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  right: -45px;
+
+  width: 30px;
+  height: 2px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+/* LINHA ESQUERDA */
+
+.match-box::after {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  left: -30px;
+
+  width: 30px;
+  height: 2px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+/* REMOVE EXTERNAS */
+
+.r32 .match-box::after {
+  display: none;
+}
+
+/* remove linhas da direita do centro */
+
+/* =========================================
+   CENTRO - FINAL E 3º LUGAR
+========================================= */
+
+/* remove linha direita padrão do centro */
+
+.center-stage .match-box::before {
+  display: none;
+}
+
+/* FINAL */
+
+.center-stage .final-box::before {
+  content: "";
+
+  display: block !important;
+
+  position: absolute;
+
+  top: 50%;
+  right: -30px;
+
+  width: 30px;
+  height: 2px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+/* 3º LUGAR */
+
+.center-stage .third-box::before {
+  content: "";
+
+  display: block !important;
+
+  position: absolute;
+
+  top: 50%;
+  right: -30px;
+
+  width: 30px;
+  height: 2px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+/* títulos da final e 3º lugar */
+
+.center-stage h3 {
+  text-align: center;
+
+  width: 100%;
+
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+
+  color: #8ab4ff;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1400px) {
+  .bracket-section {
+    overflow: hidden;
+  }
+}
+
+
+
+/* =========================================
+   LADO DIREITO DO BRACKET
+========================================= */
+
+
+/* mantém linha da esquerda */
+
+.right-side .match-box::after {
+  display: block;
+}
+
+/* LINHAS VERTICAIS DO LADO DIREITO */
+
+.right-side .round-column::before {
+  left: auto;
+  right: -30px;
+}
+
+/* remove linha direita da primeira rodada direita */
+
+.r32.right-side .match-box::before {
+  display: none;
+}
+
+/* =========================================
+   NOVAS LINHAS VERTICAIS
+========================================= */
+
+.r16 .round-column,
+.r8 .round-column,
+.semi .round-column {
+  position: relative;
+}
+
+/* =========================================
+   R32 -> R16
+   4 conectores independentes
+========================================= */
+
+.connector {
+  position: absolute;
+
+  width: 2px;
+
+  left: -47px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+.c1 {
+  top: -5px;
+  height: 186px;
+}
+
+.c2 {
+  top: 368px;
+  height: 186px;
+}
+
+.c3 {
+  top: 740px;
+  height: 186px;
+}
+
+.c4 {
+  top: 1110px;
+  height: 186px;
+}
+
+.right-side .connector {
+  left: auto;
+  right: -47px;
+}
+
+/* =========================================
+   R16 -> R8
+   2 conectores
+========================================= */
+
+/* linha superior */
+
+.r8 .round-column::before {
+  content: "";
+
+  position: absolute;
+
+  left: -46px;
+  top: -96px;
+
+  width: 2px;
+  height: 376px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+/* linha inferior */
+
+.r8 .round-column::after {
+  content: "";
+
+  position: absolute;
+
+  left: -46px;
+  top: 650px;
+
+  width: 2px;
+  height: 376px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+.right-side.r8 .round-column::before,
+.right-side.r8 .round-column::after {
+  left: auto;
+  right: -47px;
+}
+
+/* =========================================
+   R8 -> SEMI
+========================================= */
+
+.semi .round-column::before {
+  content: "";
+
+  position: absolute;
+
+  left: -30px;
+  top: -296px;
+
+  width: 2px;
+  height: 760px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+/* =========================================
+   SEMI -> FINAL
+========================================= */
+
+.center-stage {
+  position: relative;
+}
+
+.center-stage::before {
+  content: "";
+
+  position: absolute;
+
+  left: -30px;
+  top: 624px;
+
+  width: 2px;
+  height: 344px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+.center-stage::after {
+  content: "";
+
+  position: absolute;
+
+  right: -30px;
+  top: 624px;
+
+  width: 2px;
+  height: 344px;
+
+  background: rgba(124, 77, 255, 0.75);
+}
+
+/* =========================================
+   LADO DIREITO
+========================================= */
+
+.right-side.r16 .round-column::before,
+.right-side.r8 .round-column::before,
+.right-side.semi .round-column::before {
+  left: auto;
+  right: -30px;
+}
+
+/* =========================================
+   TROFÉU
+========================================= */
+
+.trophy-section {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding: 40px 20px 80px;
+}
+
+.trophy-section img {
+  width: 220px;
+
+  opacity: 0.9;
+  mix-blend-mode: screen;
+  filter:
+    drop-shadow(0 0 20px rgba(124, 77, 255, 0.35))
+    drop-shadow(0 0 40px rgba(77, 166, 255, 0.2));
+
+  transition: 0.4s;
+}
+
+.trophy-section img:hover {
+  transform: scale(1.04);
+
+  opacity: 1;
+}
+
+.bracket-container {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.bracket-container,
+.bracket-wrapper,
+.bracket {
+  overflow-y: visible;
+}
