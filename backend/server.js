@@ -49,13 +49,6 @@ require("dotenv").config();
 const groups = require("./data/groups");
 const fs = require("fs");
 const path = require("path");
-const session = require("express-session");
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
-const groups = require("./data/groups");
-const fs = require("fs");
-const path = require("path");
 // =====================================================
 // CONFIGURAÇÃO INICIAL DO EXPRESS
 // =====================================================
