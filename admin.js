@@ -27,9 +27,6 @@ MAPA DO ARQUIVO
 const adminBtn = document.getElementById("adminBtn");
 const loginModal = document.getElementById("loginModal");
 const loginSubmit = document.getElementById("loginSubmit");
-const adminBtn = document.getElementById("adminBtn");
-const loginModal = document.getElementById("loginModal");
-const loginSubmit = document.getElementById("loginSubmit");
 // =====================================================
 // ABRIR MODAL DE LOGIN
 // =====================================================
