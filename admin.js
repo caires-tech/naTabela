@@ -64,17 +64,20 @@ loginSubmit.addEventListener("click", async () => {
   const user = document.getElementById("loginUser").value;
   const password = document.getElementById("loginPassword").value;
   // Envia as credenciais para o servidor
-  const response = await fetch("http://127.0.0.1:3000/login", {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    "https://copa-do-mundo-2026-7gbp.onrender.com/login",
+    {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user,
+        password,
+      }),
     },
-    body: JSON.stringify({
-      user,
-      password,
-    }),
-  });
+  );
 
   const data = await response.json();
 

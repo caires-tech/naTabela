@@ -348,7 +348,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 1. CARREGAR OS GRUPOS E MONTAR O DOM PRIMEIRO
   try {
-    const response = await fetch("http://127.0.0.1:3000/api/groups");
+    const response = await fetch(
+      "https://copa-do-mundo-2026-7gbp.onrender.com/api/groups",
+    );
     groups = await response.json();
   } catch (err) {
     console.error("Erro ao buscar grupos da API:", err);
@@ -420,9 +422,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 3. RECUPERAR AUTENTICAÇÃO E CONFIGURAR ESTADOS LOCAIS
   try {
-    const authResponse = await fetch("http://127.0.0.1:3000/check-auth", {
-      credentials: "include",
-    });
+    const authResponse = await fetch(
+      "https://copa-do-mundo-2026-7gbp.onrender.com/check-auth",
+      {
+        credentials: "include",
+      },
+    );
     const authData = await authResponse.json();
     console.log("Auth status:", authData);
   } catch (e) {
@@ -430,7 +435,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const isAdmin = localStorage.getItem("admin") === "true";
-  const stateResponse = await fetch("http://127.0.0.1:3000/tournament-state");
+  const stateResponse = await fetch(
+    "https://copa-do-mundo-2026-7gbp.onrender.com/tournament-state",
+  );
   const stateData = await stateResponse.json();
 
   knockoutGenerated = stateData.knockoutGenerated;
@@ -445,9 +452,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 4. CARREGAR DADOS SALVOS DA FASE DE GRUPOS E TERCEIROS
   try {
-    const scoresResponse = await fetch("http://127.0.0.1:3000/scores");
+    const scoresResponse = await fetch(
+      "https://copa-do-mundo-2026-7gbp.onrender.com/scores",
+    );
     const savedScores = await scoresResponse.json();
-    const thirdsResponse = await fetch("http://127.0.0.1:3000/thirds");
+    const thirdsResponse = await fetch(
+      "https://copa-do-mundo-2026-7gbp.onrender.com/thirds",
+    );
     const savedThirds = await thirdsResponse.json();
 
     manualThirds = savedThirds;
@@ -467,7 +478,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 5. CARREGAR PLACARES SALVOS DO MATA-MATA
   try {
-    const knockoutResponse = await fetch("http://127.0.0.1:3000/knockout");
+    const knockoutResponse = await fetch(
+      "https://copa-do-mundo-2026-7gbp.onrender.com/knockout",
+    );
     const knockoutData = await knockoutResponse.json();
 
     knockoutData.forEach((match) => {
@@ -541,16 +554,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   generateBracketBtn.addEventListener("click", async () => {
     knockoutGenerated = true;
 
-    await fetch("http://127.0.0.1:3000/save-tournament-state", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
+    await fetch(
+      "https://copa-do-mundo-2026-7gbp.onrender.com/save-tournament-state",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          knockoutGenerated: true,
+        }),
       },
-      body: JSON.stringify({
-        knockoutGenerated: true,
-      }),
-    });
+    );
 
     updateBracketTeams();
     alert("Fase de grupos finalizada!");
@@ -561,7 +577,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // REQUISIÇÕES E EVENTOS DE LOGIN / ADMIN
 // =========================================
 
-fetch("http://127.0.0.1:3000/api/test")
+fetch("https://copa-do-mundo-2026-7gbp.onrender.com/api/test")
   .then((response) => response.json())
   .then((data) => console.log(data))
   .catch((err) => console.log(err));
@@ -602,7 +618,7 @@ document.addEventListener("input", (event) => {
 // SAÍDA DO MODO ADMIN
 // =====================================================
 logoutBtn.addEventListener("click", async () => {
-  await fetch("http://127.0.0.1:3000/logout", {
+  await fetch("https://copa-do-mundo-2026-7gbp.onrender.com/logout", {
     method: "POST",
     credentials: "include",
   });
@@ -633,17 +649,20 @@ saveBtn.addEventListener("click", async () => {
     });
   });
 
-  const response = await fetch("http://127.0.0.1:3000/save-score", {
-    method: "POST",
-    credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(scores),
-  });
+  const response = await fetch(
+    "https://copa-do-mundo-2026-7gbp.onrender.com/save-score",
+    {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(scores),
+    },
+  );
 
   const data = await response.json();
 
   // SALVAR TERCEIROS MANUAIS
-  await fetch("http://127.0.0.1:3000/save-thirds", {
+  await fetch("https://copa-do-mundo-2026-7gbp.onrender.com/save-thirds", {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
@@ -670,7 +689,7 @@ saveBtn.addEventListener("click", async () => {
     alert("Placares salvos com sucesso!");
   }
 
-  await fetch("http://127.0.0.1:3000/save-knockout", {
+  await fetch("https://copa-do-mundo-2026-7gbp.onrender.com/save-knockout", {
     method: "POST",
     credentials: "include",
     headers: {
@@ -737,10 +756,13 @@ resetBracketBtn.addEventListener("click", async () => {
   }
 
   try {
-    const response = await fetch("http://127.0.0.1:3000/reset-tournament", {
-      method: "POST",
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://copa-do-mundo-2026-7gbp.onrender.com/reset-tournament",
+      {
+        method: "POST",
+        credentials: "include",
+      },
+    );
 
     const data = await response.json();
 
