@@ -56,7 +56,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: true,
+    origin: "https://caires-tech.github.io",
     credentials: true,
   }),
 );
@@ -70,6 +70,8 @@ app.use(express.json());
 // Utilizado para manter o login do administrador
 // entre diferentes requisições.
 // =====================================================
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret: "copa2026",
@@ -77,8 +79,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
     },
   }),
 );
