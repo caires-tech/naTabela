@@ -1324,20 +1324,28 @@ input.ko-score:-webkit-autofill:focus {
   display: none;
 }
 
+.mobile-warning {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .mobile-warning {
     display: block;
+
     text-align: center;
-    margin: 15px auto;
-    padding: 12px;
+    margin: 8px auto 15px auto;
+
+    color: #b9a8ff;
+    opacity: 0.75;
+
+    font-size: 0.75rem;
+    font-style: italic;
+
+    background: none;
+    border: none;
+    padding: 0;
+
     max-width: 90%;
-
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(124,77,255,0.4);
-    border-radius: 12px;
-
-    color: #ddd;
-    font-size: 0.9rem;
   }
 }
 
