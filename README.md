@@ -10,7 +10,7 @@ O projeto permite registrar resultados da fase de grupos, calcular automaticamen
 
 ## 📸 Demonstração
 
-![Tela do Sistema](img/tela-pagina.jpg)
+![Tela do Sistema](img/tela-pagina.JPG)
 
 ---
 
