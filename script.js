@@ -956,3 +956,13 @@ function updateChampion() {
     championFlagEl.src = teamData.flag;
   }
 }
+
+window.addEventListener("load", () => {
+  if (window.innerWidth <= 768) {
+    const bracketContainer = document.querySelector(".bracket-container");
+
+    if (bracketContainer) {
+      bracketContainer.scrollLeft = 0;
+    }
+  }
+});

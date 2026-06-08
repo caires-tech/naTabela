@@ -1319,3 +1319,37 @@ input.ko-score:-webkit-autofill:focus {
     0 0 6px rgba(255, 215, 0, 0.8),
     0 0 12px rgba(255, 215, 0, 0.5);
 }
+
+.mobile-warning {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-warning {
+    display: block;
+    text-align: center;
+    margin: 15px auto;
+    padding: 12px;
+    max-width: 90%;
+
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(124,77,255,0.4);
+    border-radius: 12px;
+
+    color: #ddd;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .match-box::before,
+  .match-box::after,
+  .round-column::before,
+  .round-column::after,
+  .center-stage::before,
+  .center-stage::after {
+    display: none !important;
+  }
+
+}
