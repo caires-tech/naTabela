@@ -1335,7 +1335,7 @@ input.ko-score:-webkit-autofill:focus {
     text-align: center;
     margin: 8px auto 15px auto;
 
-    color: #b9a8ff;
+    color: #6140e6;
     opacity: 0.75;
 
     font-size: 0.75rem;
@@ -1360,4 +1360,76 @@ input.ko-score:-webkit-autofill:focus {
     display: none !important;
   }
 
+}
+
+/* ==========================================
+   LOADING DA API
+   ========================================== */
+
+#loading-indicator p {
+    margin-top: 12px;
+    color: #6f7cff;
+    font-size: 14px;
+    letter-spacing: 1px;
+
+    text-shadow:
+      0 0 4px rgba(111, 124, 255, 0.5),
+      0 0 8px rgba(111, 124, 255, 0.3);
+}
+
+.loader-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+
+    border: 3px solid rgba(255,255,255,0.08);
+
+    border-top: 3px solid var(--primary-glow);
+    border-right: 3px solid var(--secondary-glow);
+
+    animation: spinLoader 1.2s linear infinite;
+
+    box-shadow:
+      0 0 10px rgba(124, 77, 255, 0.45),
+      0 0 20px rgba(77, 166, 255, 0.25);
+}
+
+.loader-ring::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+
+    border-radius: 50%;
+
+    border: 2px solid transparent;
+    border-left: 2px solid var(--primary-glow);
+    border-bottom: 2px solid var(--secondary-glow);
+
+    animation: spinLoaderReverse 2s linear infinite;
+}
+
+#loading-indicator p {
+    margin-top: 12px;
+    color: #d8d8d8;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+@keyframes spinLoader {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinLoaderReverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
 }

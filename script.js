@@ -354,6 +354,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     groups = await response.json();
   } catch (err) {
     console.error("Erro ao buscar grupos da API:", err);
+    document.getElementById("loading-indicator").innerHTML =
+      "<p>⚠️ Não foi possível carregar os dados.</p>";
     return;
   }
 
@@ -416,6 +418,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   container.appendChild(fragment);
+
+  // Esconde o spinner quando os grupos estiverem carregados
+  document.getElementById("loading-indicator").style.display = "none";
 
   // 2. CRIAR OS INPUTS DE PÊNALTI NO MATA-MATA
   createPenaltyInputs();
