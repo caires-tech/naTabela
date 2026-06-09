@@ -1366,6 +1366,15 @@ input.ko-score:-webkit-autofill:focus {
    LOADING DA API
    ========================================== */
 
+#loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 15px auto 25px;
+}
+
 #loading-indicator p {
     margin-top: 12px;
     color: #6f7cff;
@@ -1407,13 +1416,6 @@ input.ko-score:-webkit-autofill:focus {
     border-bottom: 2px solid var(--secondary-glow);
 
     animation: spinLoaderReverse 2s linear infinite;
-}
-
-#loading-indicator p {
-    margin-top: 12px;
-    color: #d8d8d8;
-    font-size: 14px;
-    letter-spacing: 1px;
 }
 
 @keyframes spinLoader {
