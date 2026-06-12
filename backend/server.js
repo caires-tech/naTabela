@@ -323,53 +323,68 @@ app.get("/check-auth", (req, res) => {
 // =====================================================
 // DADOS DO MATA-MATA
 // =====================================================
-app.get("/knockout", (req, res) => {
-  const filePath = path.join(__dirname, "knockout-data.json");
+app.get("/knockout", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("app_data")
+      .select("value")
+      .eq("key", "knockout")
+      .single();
 
-  if (!fs.existsSync(filePath)) {
-    return res.json([]);
+    if (error) return res.status(500).json(error);
+
+    res.json(data.value || []);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  const data = fs.readFileSync(filePath, "utf8");
-
-  res.json(JSON.parse(data));
 });
 
-app.post("/save-knockout", requireAdmin, (req, res) => {
-  fs.writeFileSync("knockout-data.json", JSON.stringify(req.body, null, 2));
+app.post("/save-knockout", requireAdmin, async (req, res) => {
+  try {
+    const { error } = await supabase
+      .from("app_data")
+      .update({ value: req.body })
+      .eq("key", "knockout");
 
-  res.json({
-    success: true,
-  });
+    if (error) return res.status(500).json(error);
+
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 // =====================================================
 // ESTADO GLOBAL DO TORNEIO
-//
-// Exemplo:
-// {
-//   knockoutGenerated: true
-// }
 // =====================================================
-app.get("/tournament-state", (req, res) => {
-  const filePath = path.join(__dirname, "tournament-state.json");
+app.get("/tournament-state", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("app_data")
+      .select("value")
+      .eq("key", "tournament_state")
+      .single();
 
-  if (!fs.existsSync(filePath)) {
-    return res.json({
-      knockoutGenerated: false,
-    });
+    if (error) return res.status(500).json(error);
+
+    res.json(data.value || { knockoutGenerated: false });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  const data = fs.readFileSync(filePath, "utf8");
-
-  res.json(JSON.parse(data));
 });
 
-app.post("/save-tournament-state", requireAdmin, (req, res) => {
-  fs.writeFileSync("tournament-state.json", JSON.stringify(req.body, null, 2));
+app.post("/save-tournament-state", requireAdmin, async (req, res) => {
+  try {
+    const { error } = await supabase
+      .from("app_data")
+      .update({ value: req.body })
+      .eq("key", "tournament_state");
 
-  res.json({
-    success: true,
-  });
+    if (error) return res.status(500).json(error);
+
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 // =====================================================
 // RESET COMPLETO DO TORNEIO
