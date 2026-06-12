@@ -46,9 +46,14 @@ const session = require("express-session");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const { createClient } = require("@supabase/supabase-js");
 const groups = require("./data/groups");
 const fs = require("fs");
 const path = require("path");
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY,
+);
 // =====================================================
 // CONFIGURAÇÃO INICIAL DO EXPRESS
 // =====================================================
@@ -90,6 +95,48 @@ app.get("/api/test", (req, res) => {
     message: "API da Copa funcionando",
   });
 });
+// rota de teste simples
+app.get("/supabase-test", async (req, res) => {
+  try {
+    const { data, error } = await supabase.from("app_data").select("*");
+
+    console.log(JSON.stringify(data, null, 2));
+
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
+});
+
+app.get("/supabase-save-test", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("app_data")
+      .update({
+        value: [
+          {
+            id: "1",
+            homeScore: "2",
+            awayScore: "1",
+          },
+        ],
+      })
+      .eq("key", "scores")
+      .select();
+
+    res.json({
+      data,
+      error,
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
+});
+
 // =====================================================
 // DADOS DOS GRUPOS
 // =====================================================
@@ -142,31 +189,52 @@ app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
 
+// Salva dados na tabela supabase
 app.post("/save-score", requireAdmin, async (req, res) => {
-  const scores = req.body;
+  try {
+    const scores = req.body;
 
-  const filePath = path.join(__dirname, "scores.json");
+    const { error } = await supabase
+      .from("app_data")
+      .update({
+        value: scores,
+      })
+      .eq("key", "scores");
 
-  fs.writeFileSync(filePath, JSON.stringify(scores, null, 2));
+    if (error) {
+      return res.status(500).json(error);
+    }
 
-  res.json({
-    success: true,
-    message: "Placares salvos com sucesso",
-  });
+    res.json({
+      success: true,
+      message: "Placares salvos com sucesso",
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 });
 
-app.get("/scores", (req, res) => {
-  const filePath = path.join(__dirname, "scores.json");
+// Busca dados na tabela supabase
+app.get("/scores", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("app_data")
+      .select("value")
+      .eq("key", "scores")
+      .single();
 
-  if (!fs.existsSync(filePath)) {
-    return res.json([]);
+    if (error) {
+      return res.status(500).json(error);
+    }
+
+    res.json(data.value);
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
   }
-
-  const fileData = fs.readFileSync(filePath, "utf-8");
-
-  const scores = JSON.parse(fileData);
-
-  res.json(scores);
 });
 // =====================================================
 // TERCEIROS COLOCADOS MANUAIS
