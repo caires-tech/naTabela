@@ -76,14 +76,25 @@ O projeto permite registrar resultados da fase de grupos, calcular automaticamen
 * Restrição de edição para usuários não autenticados
 * Botões administrativos para gerenciamento do torneio
 
-### Persistência de Dados
+### 💾 Persistência de Dados
 
-Os dados são armazenados em arquivos JSON:
+Os dados são armazenados no Supabase, utilizando uma tabela única (`app_data`) com estrutura baseada em chave/valor:
 
-* scores.json
-* thirds-data.json
-* knockout-data.json
-* tournament-state.json
+- scores → resultados da fase de grupos
+- thirds → melhores terceiros colocados
+- knockout → chaveamento da fase eliminatória
+- tournament_state → estado geral do torneio
+
+## 🔄 Evolução da Arquitetura
+
+O projeto originalmente utilizava arquivos JSON locais para persistência de dados.
+
+Posteriormente, foi migrado para o Supabase, garantindo:
+
+- Persistência real em produção
+- Dados independentes do servidor Render
+- Melhor escalabilidade
+- Consistência entre sessões e deploys
 
 ---
 
@@ -101,10 +112,11 @@ Os dados são armazenados em arquivos JSON:
 * Express.js
 * Express Session
 * CORS
+* Supabase
 
 ### Armazenamento
 
-* Arquivos JSON
+* Supabase
 
 ### Hospedagem
 
@@ -114,7 +126,7 @@ Os dados são armazenados em arquivos JSON:
 ---
 
 ## 📂 Estrutura do Projeto
-
+⚠️ Os arquivos JSON foram substituídos por persistência via Supabase.
 ```text
 copa-2026/
 │
@@ -136,10 +148,6 @@ copa-2026/
 │
 ├── backend/
 │   ├── server.js
-│   ├── scores.json
-│   ├── thirds-data.json
-│   ├── knockout-data.json
-│   ├── tournament-state.json
 │   ├── .env
 │   ├── package.json
 │   └── package-lock.json
@@ -174,6 +182,8 @@ npm install
 ```env
 ADMIN_USER=admin
 ADMIN_PASSWORD=sua_senha
+SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_KEY=sua_chave_aqui
 ```
 
 ### 5. Iniciar o backend

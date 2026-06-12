@@ -41,8 +41,6 @@ const cors = require("cors");
 require("dotenv").config();
 const { createClient } = require("@supabase/supabase-js");
 const groups = require("./data/groups");
-const fs = require("fs");
-const path = require("path");
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY,
@@ -160,7 +158,6 @@ app.post("/login", (req, res) => {
         });
       }
 
-      console.log("LOGIN OK");
       console.log(req.session);
 
       res.json({
@@ -176,17 +173,15 @@ app.post("/login", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
-
 // Salva dados na tabela supabase
 app.post("/save-score", requireAdmin, async (req, res) => {
   try {
     const scores = req.body;
-
+    if (!Array.isArray(scores)) {
+      return res.status(400).json({
+        error: "Formato inválido de scores",
+      });
+    }
     const { error } = await supabase
       .from("app_data")
       .update({
@@ -216,7 +211,7 @@ app.get("/scores", async (req, res) => {
       .from("app_data")
       .select("value")
       .eq("key", "scores")
-      .single();
+      .limit(1);
 
     if (error) {
       return res.status(500).json(error);
@@ -238,7 +233,7 @@ app.get("/thirds", async (req, res) => {
       .from("app_data")
       .select("value")
       .eq("key", "thirds")
-      .single();
+      .limit(1);
 
     if (error) {
       return res.status(500).json(error);
@@ -307,7 +302,6 @@ app.post("/logout", (req, res) => {
 // VERIFICAÇÃO DE AUTENTICAÇÃO
 // =====================================================
 app.get("/check-auth", (req, res) => {
-  console.log("CHECK AUTH");
   console.log(req.session);
   res.json({
     admin: !!req.session.admin,
@@ -322,7 +316,7 @@ app.get("/knockout", async (req, res) => {
       .from("app_data")
       .select("value")
       .eq("key", "knockout")
-      .single();
+      .limit(1);
 
     if (error) return res.status(500).json(error);
 
@@ -355,7 +349,7 @@ app.get("/tournament-state", async (req, res) => {
       .from("app_data")
       .select("value")
       .eq("key", "tournament_state")
-      .single();
+      .limit(1);
 
     if (error) return res.status(500).json(error);
 
@@ -434,4 +428,10 @@ app.post("/reset-tournament", requireAdmin, async (req, res) => {
       error: err.message,
     });
   }
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
