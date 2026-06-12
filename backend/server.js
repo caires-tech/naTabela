@@ -217,7 +217,7 @@ app.get("/scores", async (req, res) => {
       return res.status(500).json(error);
     }
 
-    res.json(data.value);
+    res.json(data?.[0]?.value || []);
   } catch (err) {
     res.status(500).json({
       error: err.message,
@@ -239,7 +239,7 @@ app.get("/thirds", async (req, res) => {
       return res.status(500).json(error);
     }
 
-    res.json(data.value);
+    res.json(data?.[0]?.value || []);
   } catch (err) {
     res.status(500).json({
       error: err.message,
