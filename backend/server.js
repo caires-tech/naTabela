@@ -239,17 +239,50 @@ app.get("/scores", async (req, res) => {
 // =====================================================
 // TERCEIROS COLOCADOS MANUAIS
 // =====================================================
-app.get("/thirds", (req, res) => {
-  const data = fs.readFileSync("thirds-data.json", "utf8");
+app.get("/thirds", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("app_data")
+      .select("value")
+      .eq("key", "thirds")
+      .single();
 
-  res.json(JSON.parse(data));
+    if (error) {
+      return res.status(500).json(error);
+    }
+
+    res.json(data.value);
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 });
 
 app.post("/save-thirds", requireAdmin, async (req, res) => {
-  fs.writeFileSync("thirds-data.json", JSON.stringify(req.body, null, 2));
+  try {
+    const { error } = await supabase
+      .from("app_data")
+      .update({
+        value: req.body,
+      })
+      .eq("key", "thirds");
 
-  res.json({ success: true });
+    if (error) {
+      return res.status(500).json(error);
+    }
+
+    res.json({
+      success: true,
+      message: "Thirds salvos com sucesso",
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 });
+
 // =====================================================
 // MIDDLEWARE DE PROTEÇÃO
 //
