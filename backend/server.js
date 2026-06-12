@@ -29,13 +29,6 @@ MAPA DO BACKEND
 10. Estado do Torneio
 11. Reset Geral
 
-Arquivos persistidos:
-
-scores.json
-thirds-data.json
-knockout-data.json
-tournament-state.json
-
 =====================================================
 */
 
@@ -395,25 +388,50 @@ app.post("/save-tournament-state", requireAdmin, async (req, res) => {
 // - Mata-mata
 // - Estado do torneio
 // =====================================================
-app.post("/reset-tournament", requireAdmin, (req, res) => {
-  fs.writeFileSync("scores.json", JSON.stringify([], null, 2));
-
-  fs.writeFileSync("thirds-data.json", JSON.stringify({}, null, 2));
-
-  fs.writeFileSync("knockout-data.json", JSON.stringify([], null, 2));
-
-  fs.writeFileSync(
-    "tournament-state.json",
-    JSON.stringify(
+app.post("/reset-tournament", requireAdmin, async (req, res) => {
+  try {
+    const resetData = [
       {
-        knockoutGenerated: false,
+        key: "scores",
+        value: [],
       },
-      null,
-      2,
-    ),
-  );
+      {
+        key: "thirds",
+        value: {},
+      },
+      {
+        key: "knockout",
+        value: [],
+      },
+      {
+        key: "tournament_state",
+        value: {
+          knockoutGenerated: false,
+        },
+      },
+    ];
 
-  res.json({
-    success: true,
-  });
+    for (const item of resetData) {
+      const { error } = await supabase
+        .from("app_data")
+        .update({ value: item.value })
+        .eq("key", item.key);
+
+      if (error) {
+        return res.status(500).json({
+          error,
+          step: item.key,
+        });
+      }
+    }
+
+    res.json({
+      success: true,
+      message: "Torneio resetado com sucesso no Supabase",
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 });
