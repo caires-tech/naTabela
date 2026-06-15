@@ -125,7 +125,7 @@ const groups = [
       { flag: "https://flagcdn.com/w40/br.png", name: "Brasil" },
       { flag: "https://flagcdn.com/w40/ma.png", name: "Marrocos" },
       { flag: "https://flagcdn.com/w40/ht.png", name: "Haiti" },
-      { flag: "https://flagcdn.com/w40/gb.png", name: "Escócia" },
+      { flag: "https://flagcdn.com/w40/gb-sct.png", name: "Escócia" },
     ],
     matches: [
       {
@@ -659,7 +659,7 @@ const groups = [
   {
     name: "Grupo L",
     teams: [
-      { flag: "https://flagcdn.com/w40/gb.png", name: "Inglaterra" },
+      { flag: "https://flagcdn.com/w40/gb-eng.png", name: "Inglaterra" },
       { flag: "https://flagcdn.com/w40/hr.png", name: "Croácia" },
       { flag: "https://flagcdn.com/w40/gh.png", name: "Gana" },
       { flag: "https://flagcdn.com/w40/pa.png", name: "Panamá" },
