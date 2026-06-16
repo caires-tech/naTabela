@@ -206,7 +206,7 @@ const groups = [
       },
       {
         id: "D3",
-        date: "19/06",
+        date: "20/06",
         time: "00:00",
         location: "Santa Clara",
         home: "Turquia",
@@ -326,8 +326,8 @@ const groups = [
       },
       {
         id: "F3",
-        date: "20/06",
-        time: "23:00",
+        date: "21/06",
+        time: "01:00",
         location: "Monterrey",
         home: "Tunísia",
         away: "Japão",
@@ -402,7 +402,7 @@ const groups = [
       },
       {
         id: "G5",
-        date: "26/06",
+        date: "27/06",
         time: "00:00",
         location: "Seattle",
         home: "Egito",
@@ -410,7 +410,7 @@ const groups = [
       },
       {
         id: "G6",
-        date: "26/06",
+        date: "27/06",
         time: "00:00",
         location: "Vancouver",
         home: "Nova Zelândia",
