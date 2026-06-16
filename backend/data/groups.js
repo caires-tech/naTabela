@@ -549,7 +549,7 @@ const groups = [
     matches: [
       {
         id: "J1",
-        date: "16/06",
+        date: "17/06",
         time: "01:00",
         location: "Santa Clara",
         home: "Áustria",
