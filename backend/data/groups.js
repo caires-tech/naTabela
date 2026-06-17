@@ -617,7 +617,7 @@ const groups = [
       {
         id: "k2",
         date: "17/06",
-        time: "21:00",
+        time: "23:00",
         location: "Cidade do México",
         home: "Uzbequistão",
         away: "Colômbia",
