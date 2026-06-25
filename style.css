@@ -1435,3 +1435,23 @@ input.ko-score:-webkit-autofill:focus {
         transform: rotate(0deg);
     }
 }
+
+header {
+  position: relative; 
+}
+
+/* LOGO no canto superior esquerdo */
+header::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  width: 120px;  /* ajuste fino aqui */
+  height: 60px;
+
+  background-image: url("img/logo_naTabela.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

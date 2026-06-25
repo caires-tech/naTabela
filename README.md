@@ -1,8 +1,12 @@
-# 🏆 Copa do Mundo 2026
+<p align="center">
+  <img src="img/logo_naTabela.svg" alt="Copa do Mundo 2026" width="160"/>
+</p>
 
+<h1 align="center">🏆 Copa do Mundo 2026</h1>
+
+<p align="center">
 Sistema web completo para simulação e gerenciamento da Copa do Mundo FIFA 2026.
-
-O projeto permite registrar resultados da fase de grupos, calcular automaticamente as classificações, definir os melhores terceiros colocados, gerar o chaveamento das fases eliminatórias e acompanhar toda a competição até a definição do campeão.
+</p>
 
 ## 🌐 Acesso Online
 
