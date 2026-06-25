@@ -28,6 +28,13 @@ body {
 /* =========================================
    HEADER
 ========================================= */
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 280px;
+}
+
 header {
   text-align: center;
   padding: 50px 20px;
@@ -1436,22 +1443,3 @@ input.ko-score:-webkit-autofill:focus {
     }
 }
 
-header {
-  position: relative; 
-}
-
-/* LOGO no canto superior esquerdo */
-header::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  left: 20px;
-
-  width: 120px;  /* ajuste fino aqui */
-  height: 60px;
-
-  background-image: url("img/logo_naTabela.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
