@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="img/logo_naTabela.svg" alt="Copa do Mundo 2026" width="160"/>
+  <img src="img/logo_naTabela.svg" alt="Copa do Mundo 2026" width="700"/>
 </p>
 
 <h1 align="center">🏆 Copa do Mundo 2026</h1>
