@@ -320,7 +320,7 @@ app.get("/knockout", async (req, res) => {
 
     if (error) return res.status(500).json(error);
 
-    res.json(data.value || []);
+    res.json(data?.[0]?.value || []);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -353,7 +353,7 @@ app.get("/tournament-state", async (req, res) => {
 
     if (error) return res.status(500).json(error);
 
-    res.json(data.value || { knockoutGenerated: false });
+    res.json(data?.[0]?.value || { knockoutGenerated: false });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
